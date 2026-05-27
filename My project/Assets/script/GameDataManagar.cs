@@ -19,9 +19,6 @@ public class PlayerData
 }
 public class GameDataManagar : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-
-    public int score;
 
     public static GameDataManagar Instance;
 
@@ -40,7 +37,7 @@ public class GameDataManagar : MonoBehaviour
         }
     }
 
-    public void SaveData(PlayerData playerDat)
+    public void SaveData(PlayerData playerData)
     {
         string filePath = Application.persistentDataPath + "/player_data.json";
         string json = JsonUtility.ToJson(playerData, true);
@@ -82,11 +79,11 @@ public class GameDataManagar : MonoBehaviour
     public void PlayerDead()
     {
         PlayerData playerData = LoadData();
-        if(playerData != null)
+        if (playerData != null)
         {
             playerData.stage = 1;
 
-            foreach ( string item in playerData.collectedItems.ToList())
+            foreach (string item in playerData.collectedItems.ToList())
             {
                 if (UnityEngine.Random.Range(0,2) == 0)
                 {
