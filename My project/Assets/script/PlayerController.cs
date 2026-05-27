@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Updata()
+    private void Update()
     {
         if (input.sqrMagnitude <= 0.01f)
         {

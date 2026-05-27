@@ -94,20 +94,5 @@ public class GameDataManagar : MonoBehaviour
         }
         SceneManager.LoadScene("GameOver");
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Item"))
-        {
-            ItemObject item = collision.GetComponent<ItemObject>();
-
-            score += item.GetPoint();
-
-            GameDataManagar.Instance.playerData.collectedItems.Add(item.GetItem());
-
-            scoreText.text = score.ToString();
-            Destroy(collision.gameObject);
-
-            GameDataManagar.Instance.SaveData(GameDataManagar.Instance.playerData);
-        }
-    }
+    
 }
