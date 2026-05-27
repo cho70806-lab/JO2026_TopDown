@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5;
+    public float moveSpeed = 5f;
 
     public Sprite[] spriteUp;
 
@@ -45,11 +45,59 @@ public class PlayerController : MonoBehaviour
 
         if (input.sqrMagnitude > 0.01f)
         {
-            if(Mathf.Abs(input.x) > Mathf.Abs(input.y))
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
             {
                 if (input.x > 0)
                     ChangeSprites(spriteRight);
+                else
+                    ChangeSprites(spriteLeft);
             }
+            else
+            {
+                if (input.y > 0)
+                    ChangeSprites(spriteUp);
+                else
+                    ChangeSprites(spriteDown);
+            }    
         }
+    }
+
+    private void Updata()
+    {
+        if (input.sqrMagnitude <= 0.01f)
+        {
+            frameIndex = 0;
+            sr.sprite = currentSprites[frameIndex];
+            return;
+        }
+
+        timer += Time.deltaTime;
+
+        if (timer >= frameTime)
+        {
+            timer = 0f;
+            frameIndex++;
+
+            if (frameIndex >= currentSprites.Length)
+                frameIndex = 0;
+
+            sr.sprite = currentSprites[frameIndex];
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+    }
+
+    private void ChangeSprites(Sprite[] newSprites)
+    {
+        if (currentSprites == newSprites)
+            return;
+
+        currentSprites = newSprites;
+        frameIndex = 0;
+        timer = 0f;
+        sr.sprite = currentSprites[frameIndex];
     }
 }

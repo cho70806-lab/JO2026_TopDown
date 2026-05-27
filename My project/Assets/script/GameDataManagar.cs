@@ -1,0 +1,116 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+
+
+
+[Serializable]
+
+public class PlayerData
+{
+    public List<string> collectedItems = new List<string>();
+
+    public int stage = 1;
+}
+public class GameDataManagar : MonoBehaviour
+{
+    public TextMeshProUGUI scoreText;
+
+    public int score;
+
+    public static GameDataManagar Instance;
+
+    public PlayerData playerData;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SaveData(PlayerData playerDat)
+    {
+        string filePath = Application.persistentDataPath + "/player_data.json";
+        string json = JsonUtility.ToJson(playerData, true);
+        System.IO.File.WriteAllText(filePath, json);
+        Debug.Log("게임 데이터 저장됨: " + json);
+    }
+
+    public PlayerData LoadData()
+    {
+        string filePath = Application.persistentDataPath + "/player_data.json";
+        if (System.IO.File.Exists(filePath))
+        {
+            string json = System.IO.File.ReadAllText(filePath);
+            PlayerData playerData = JsonUtility.FromJson<PlayerData>(json);
+            Debug.Log("게임 데이터 로드됨: " + json);
+            return playerData;
+        }
+        else
+        {
+            Debug.LogWarning("저장된 게임 데이터가 없습니다.");
+            return new PlayerData();
+        }
+    }
+
+    public void GameStart()
+    {
+        PlayerData playerData = LoadData();
+        if (playerData == null)
+        {
+            playerData = new PlayerData();
+            SceneManager.LoadScene("Level_1");
+        }
+        else
+        {
+            SceneManager.LoadScene("Level_1" + playerData.stage);
+        }
+    }    
+
+    public void PlayerDead()
+    {
+        PlayerData playerData = LoadData();
+        if(playerData != null)
+        {
+            playerData.stage = 1;
+
+            foreach ( string item in playerData.collectedItems.ToList())
+            {
+                if (UnityEngine.Random.Range(0,2) == 0)
+                {
+                    playerData.collectedItems.Remove(item);
+                }
+            }
+            SaveData(playerData);
+        }
+        SceneManager.LoadScene("GameOver");
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Item"))
+        {
+            ItemObject item = collision.GetComponent<ItemObject>();
+
+            score += item.GetPoint();
+
+            GameDataManagar.Instance.playerData.collectedItems.Add(item.GetItem());
+
+            scoreText.text = score.ToString();
+            Destroy(collision.gameObject);
+
+            GameDataManagar.Instance.SaveData(GameDataManagar.Instance.playerData);
+        }
+    }
+}
