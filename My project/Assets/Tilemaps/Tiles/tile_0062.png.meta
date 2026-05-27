@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 47e23ccf526caee4ea95ddd6210597ff
+guid: 6b0251a63a91bed4ca0b2ec22b4b3e8b
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: 2996355746468033428
     second: tile_0062_0
+  - first:
+      213: -8287917976682621784
+    second: tile_0062_1
+  - first:
+      213: -3146276655719950119
+    second: tile_0062_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,19 +102,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -118,8 +111,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +123,50 @@ TextureImporter:
       bones: []
       spriteID: 4937de01da1359920800000000000000
       internalID: 2996355746468033428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile_0062_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a41240f2866bfc80800000000000000
+      internalID: -8287917976682621784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile_0062_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 6
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d855b22d0e2654d0800000000000000
+      internalID: -3146276655719950119
       vertices: []
       indices: 
       edges: []
@@ -149,6 +186,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       tile_0062_0: 2996355746468033428
+      tile_0062_1: -8287917976682621784
+      tile_0062_2: -3146276655719950119
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

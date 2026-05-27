@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: da65ecf90f8f5744faadac61caf25455
+guid: 0c7c6c76b89047341a8647bac2f146e9
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -96,19 +96,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -116,9 +103,9 @@ TextureImporter:
       name: tile_0131_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 3
         y: 0
-        width: 13
+        width: 10
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
