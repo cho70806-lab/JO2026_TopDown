@@ -5,14 +5,14 @@ public class Weapon : MonoBehaviour
     public float attackRange = 8f;
     public GameObject bulletPrefab;
     public float attackInterval = 0.5f;
-
+    public PlayerStats stats;
     private float timer;
 
     void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer >= attackInterval)
+        if (timer >= attackInterval / stats.attackSpeedMultiplier)
         {
             Attack();
             timer = 0f;
@@ -32,7 +32,13 @@ public class Weapon : MonoBehaviour
                 transform.position,
                 Quaternion.identity);
 
-        bullet.GetComponent<Bullet>().SetTarget(target.transform);
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+
+        bulletScript.damage =
+            Mathf.RoundToInt(
+                10 * stats.damageMultiplier);
+
+        bulletScript.SetTarget(target.transform);
     }
 
     GameObject FindClosestEnemy()
@@ -61,5 +67,10 @@ public class Weapon : MonoBehaviour
         return closestEnemy != null
             ? closestEnemy.gameObject
             : null;
+    }
+
+    void Start()
+    {
+        stats = FindFirstObjectByType<PlayerStats>();
     }
 }

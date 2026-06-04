@@ -25,6 +25,8 @@ public class PlayerLevel : MonoBehaviour
 
         maxExp += 25;
 
-        Debug.Log("ë ˆë²¨ì—…! í˜„ìž¬ ë ˆë²¨ : " + level);
+        Debug.Log("·¹º§¾÷! ÇöÀç ·¹º§ : " + level);
+
+        LevelUpUI.Instance.Open();
     }
 }
