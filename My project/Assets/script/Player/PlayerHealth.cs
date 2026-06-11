@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        
         currentHp = maxHp;
     }
 
@@ -26,7 +27,16 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("게임 오버");
 
-        // 게임 정지
-        Time.timeScale = 0f;
+        PlayerLevel playerLevel =
+            GetComponent<PlayerLevel>();
+
+        TimeUI timeUI =
+            FindFirstObjectByType<TimeUI>();
+
+        GameOverUI.Instance.ShowGameOver(
+            playerLevel.level,
+            timeUI.GetFormattedTime());
+
+        gameObject.SetActive(false);
     }
 }
