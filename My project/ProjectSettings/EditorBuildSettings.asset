@@ -12,3 +12,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_1.unity
     guid: 147450e328459eb49abf2fa00c5492ee
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
