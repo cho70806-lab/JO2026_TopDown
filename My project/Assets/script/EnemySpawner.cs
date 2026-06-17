@@ -2,38 +2,49 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("적 프리팹")]
-    public GameObject enemyPrefab;
+    public WaveData[] waves;
 
-    [Header("플레이어")]
-    public Transform player;
+    private int currentWaveIndex;
 
-    [Header("스폰 설정")]
-    public float spawnInterval = 2f;
-    public float spawnDistance = 10f;
+    private float waveTimer;
 
-    private float timer;
+    private float spawnTimer;
 
-    void Update()
+    private void Update()
     {
-        timer += Time.deltaTime;
+        if (currentWaveIndex >= waves.Length)
+            return;
 
-        if (timer >= spawnInterval)
+        WaveData currentWave =
+            waves[currentWaveIndex];
+
+        waveTimer += Time.deltaTime;
+        spawnTimer += Time.deltaTime;
+
+        if (spawnTimer >= currentWave.spawnInterval)
         {
-            SpawnEnemy();
-            timer = 0f;
+            SpawnEnemy(currentWave.enemyPrefab);
+
+            spawnTimer = 0f;
+        }
+
+        if (waveTimer >= currentWave.duration)
+        {
+            currentWaveIndex++;
+
+            waveTimer = 0f;
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(GameObject enemyPrefab)
     {
-        // 원형 범위 랜덤 위치
-        Vector2 randomDir = Random.insideUnitCircle.normalized;
+        Vector2 randomPos =
+            (Vector2)transform.position +
+            Random.insideUnitCircle * 8f;
 
-        Vector3 spawnPos = player.position +
-                           new Vector3(randomDir.x, randomDir.y, 0) *
-                           spawnDistance;
-
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        Instantiate(
+            enemyPrefab,
+            randomPos,
+            Quaternion.identity);
     }
 }

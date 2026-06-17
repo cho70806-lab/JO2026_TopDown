@@ -8,6 +8,15 @@ public class PlayerStats : MonoBehaviour
 
     public float attackSpeedMultiplier = 1f;
 
+    private void Start()
+    {
+        damageMultiplier +=
+            SaveManager.Instance.data.attackLevel * 0.1f;
+
+        Debug.Log(
+            "현재 공격력 배율 : " +
+            damageMultiplier);
+    }
     public void ApplyUpgrade(UpgradeType type)
     {
         switch (type)

@@ -7,7 +7,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        
+        maxHp +=
+            SaveManager.Instance.data.hpLevel * 10;
+
         currentHp = maxHp;
     }
 
@@ -25,7 +27,14 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("게임 오버");
+        int earnedGold =
+            SaveManager.Instance.data.totalKills;
+
+        SaveManager.Instance.data.gold += earnedGold;
+
+        SaveManager.Instance.data.playCount++;
+
+        SaveManager.Instance.SaveGame();
 
         PlayerLevel playerLevel =
             GetComponent<PlayerLevel>();

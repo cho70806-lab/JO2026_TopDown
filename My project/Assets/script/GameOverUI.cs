@@ -10,25 +10,36 @@ public class GameOverUI : MonoBehaviour
 
     public TMP_Text levelText;
     public TMP_Text timeText;
+    public TMP_Text killText;
+    public TMP_Text goldText;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void ShowGameOver(int level, string time)
+    public void ShowGameOver(
+     int level,
+     string time)
     {
         panel.SetActive(true);
 
         levelText.text =
-            "최종 레벨 : " + level;
+            "Level : " + level;
 
         timeText.text =
-            "생존 시간 : " + time;
+            "Time : " + time;
+
+        killText.text =
+            "Kills : " +
+            KillManager.Instance.killCount;
+
+        goldText.text =
+            "Gold : " +
+            KillManager.Instance.killCount;
 
         Time.timeScale = 0f;
     }
-
     public void RestartGame()
     {
         Time.timeScale = 1f;

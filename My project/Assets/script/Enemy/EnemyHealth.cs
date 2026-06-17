@@ -25,12 +25,17 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        KillManager.Instance.killCount++;
+
+        SaveManager.Instance.data.totalKills++;
+
         Instantiate(expGemPrefab, transform.position,Quaternion.identity);
 
         Destroy(gameObject);
         EnemyManager.Instance.RemoveEnemy(this);
 
         Destroy(gameObject);
+
     }
 
     private void OnDestroy()
