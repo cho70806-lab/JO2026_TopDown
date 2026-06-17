@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   waveName: Wave 3
   duration: 60
-  spawnInterval: 0.5
+  spawnInterval: 0.15
   enemyPrefab: {fileID: 2858807208184187153, guid: fae3928dcb17a1043b73c521a718f6e4,
     type: 3}

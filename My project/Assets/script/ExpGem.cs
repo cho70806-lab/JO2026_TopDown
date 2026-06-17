@@ -12,11 +12,20 @@ public class ExpGem : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObj =
+            GameObject.FindGameObjectWithTag("Player");
+
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
     }
 
     private void Update()
     {
+        if (player == null)
+            return;
+
         if (isMagnetized)
         {
             transform.position =

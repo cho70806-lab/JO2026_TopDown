@@ -7,6 +7,13 @@ public class PlayerLevel : MonoBehaviour
     public int currentExp = 0;
     public int maxExp = 50;
 
+    public WeaponUnlockManager weaponUnlockManager;
+
+    private void Start()
+    {
+        weaponUnlockManager =
+            FindFirstObjectByType<WeaponUnlockManager>();
+    }
     public void GainExp(int amount)
     {
         currentExp += amount;
@@ -17,6 +24,13 @@ public class PlayerLevel : MonoBehaviour
         }
     }
 
+    void CheckWeaponUnlock()
+    {
+        if (level == 3)
+        {
+            weaponUnlockManager.UnlockSword();
+        }
+    }
     void LevelUp()
     {
         level++;
@@ -26,6 +40,8 @@ public class PlayerLevel : MonoBehaviour
         maxExp += 25;
 
         Debug.Log("레벨업! 현재 레벨 : " + level);
+
+        CheckWeaponUnlock();
 
         LevelUpUI.Instance.Open();
     }

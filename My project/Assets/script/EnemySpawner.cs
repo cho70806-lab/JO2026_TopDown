@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector2 randomPos =
             (Vector2)transform.position +
-            Random.insideUnitCircle * 8f;
+            Random.insideUnitCircle * 4f;
 
         Instantiate(
             enemyPrefab,
